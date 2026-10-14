@@ -1,0 +1,46 @@
+.aurora-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 20%, color-mix(in srgb, var(--aurora-color-b) 24%, transparent), transparent 30%),
+    linear-gradient(180deg, #020617 0%, #050816 52%, #020617 100%);
+}
+
+.aurora-container::before,
+.aurora-container::after {
+  position: absolute;
+  inset: -20% -10%;
+  content: "";
+  opacity: calc(0.44 + (var(--aurora-blend) * 0.2));
+  filter: blur(calc(28px * var(--aurora-amplitude)));
+  mix-blend-mode: screen;
+  transform-origin: 50% 20%;
+  animation: titan-aurora-flow var(--aurora-speed) ease-in-out infinite alternate;
+}
+
+.aurora-container::before {
+  background:
+    linear-gradient(100deg, transparent 18%, var(--aurora-color-a) 38%, var(--aurora-color-b) 54%, transparent 78%),
+    radial-gradient(ellipse at 60% 0%, var(--aurora-color-c), transparent 58%);
+  clip-path: polygon(0 17%, 20% 9%, 45% 18%, 68% 7%, 100% 15%, 100% 52%, 68% 41%, 44% 50%, 18% 38%, 0 48%);
+}
+
+.aurora-container::after {
+  background:
+    linear-gradient(95deg, transparent 12%, var(--aurora-color-b) 34%, var(--aurora-color-a) 62%, transparent 86%);
+  clip-path: polygon(0 32%, 24% 18%, 52% 30%, 76% 16%, 100% 28%, 100% 62%, 70% 54%, 48% 68%, 18% 51%, 0 60%);
+  opacity: 0.34;
+  animation-duration: calc(var(--aurora-speed) * 1.4);
+  animation-direction: alternate-reverse;
+}
+
+@keyframes titan-aurora-flow {
+  0% {
+    transform: translate3d(-4%, -3%, 0) scaleY(0.82) skewX(-7deg);
+  }
+
+  100% {
+    transform: translate3d(5%, 5%, 0) scaleY(1.08) skewX(5deg);
+  }
+}

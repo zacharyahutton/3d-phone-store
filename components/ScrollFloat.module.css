@@ -1,0 +1,12 @@
+.scrollFloat {
+  overflow: hidden;
+}
+
+.scrollFloatText {
+  display: inline-block;
+  line-height: 1;
+}
+
+.char {
+  display: inline-block;
+}
